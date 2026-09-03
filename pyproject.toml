@@ -1,0 +1,26 @@
+[project]
+name = "glf-tool"
+version = "0.1.0"
+description = "Diversity Factor Tool - Gleichzeitigkeitsfaktoren für aggregierte Heizlastprofile"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "streamlit>=1.38",
+    "pandas>=2.2",
+    "numpy>=1.26",
+    "scipy>=1.13",
+    "plotly>=5.22",
+    "openpyxl>=3.1",
+    "matplotlib>=3.8",
+    "jinja2>=3.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/glftool"]
+
+[tool.uv]
+package = true
