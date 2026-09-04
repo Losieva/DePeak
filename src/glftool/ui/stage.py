@@ -5,6 +5,7 @@ stage.py
 
 import pandas as pd
 import streamlit as st
+from pathlib import Path
 
 from glftool.models import DiversityFactorShiftTool, DiversityFactorTool
 from glftool.ui.ui import (
@@ -14,6 +15,7 @@ from glftool.ui.ui import (
     make_comparison_chart,
     read_raw_table,
     read_uploaded_profile,
+    render_pdf_viewer,
     render_placeholder_message,
     render_warning_message,
     saturation_hint,
@@ -425,3 +427,15 @@ def render():
     with right_col:
         with st.container(border=True):
             _render_output(original, adjusted, info, error_message, individual_download)
+
+    st.divider()
+    with st.expander("Documentation"):
+        doc_path = Path(__file__).resolve().parent.parent.parent.parent / "docs" / "DePeak_Losieva_Polina.pdf"
+        render_pdf_viewer(doc_path)
+        st.markdown(
+            "Full source code available on "
+            "[GitHub](https://github.com/Losieva/DePeak)."
+        )
+
+    with st.expander("Contact"):
+        st.markdown("Polina Losieva — [losievapolina@gmail.com](mailto:losievapolina@gmail.com)")

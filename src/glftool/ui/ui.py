@@ -7,6 +7,9 @@ import io
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
+
+import base64
+from pathlib import Path
  
 # Accent colors (Jeju-inspired palette)
 LEAF_GREEN = "#457534"
@@ -168,4 +171,32 @@ def saturation_hint(tau: float, window_max: float = 1.0) -> str:
         f"while higher values keep them closer together for longer. "
         f"With τ={tau:.0f}, the time-shift range reaches about 50% of its "
         f"maximum at {n50:.0f} buildings and 90% at {n90:.0f} buildings."
+    )
+
+def render_pdf_viewer(pdf_path: Path, height: int = 800):
+    if not pdf_path.exists():
+        st.warning(f"Documentation file not found: {pdf_path.name}")
+        return
+
+    pdf_bytes = pdf_path.read_bytes()
+
+    st.download_button(
+        label="Download documentation (PDF)",
+        data=pdf_bytes,
+        file_name=pdf_path.name,
+        mime="application/pdf",
+    )
+
+    base64_pdf = base64.b64encode(pdf_bytes).decode("utf-8")
+    st.markdown(
+        f"""
+        <iframe
+            src="data:application/pdf;base64,{base64_pdf}"
+            width="100%"
+            height="{height}"
+            style="border: 1px solid #E2DCCD; border-radius: 8px;"
+            type="application/pdf">
+        </iframe>
+        """,
+        unsafe_allow_html=True,
     )
