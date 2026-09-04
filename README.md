@@ -8,6 +8,26 @@ Two independent approaches are available:
 - **Shift approach** - shifts individual building profiles in time, which
   reduces the peak of the summed curve through decorrelation.
 
+## Documentation
+
+A full write-up of the methodology, results, and limitations of both
+approaches is available as a PDF: [DePeak_Losieva_Polina.pdf](./docs/DePeak_Losieva_Polina.pdf).
+
+## How to Run
+
+DePeak uses [uv](https://docs.astral.sh/uv/) for package management.
+
+1. Install uv (if not already installed) – see the
+   [official installation guide](https://docs.astral.sh/uv/getting-started/installation/).
+2. Clone this repository and open a terminal in the project folder.
+3. Install dependencies:
+   ```
+   uv sync
+   ```
+4. Start the app:
+   ```
+   uv run streamlit run app.py
+
 ---
 
 ## Winter Approach
