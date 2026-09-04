@@ -386,7 +386,7 @@ def _render_output(original, adjusted, info, error_message, individual_download=
             for col, (label, value) in zip(info_cols, info.items()):
                 col.metric(label, value)
 
-        download_cols = st.columns(2) if individual_download else [st]
+        download_cols = st.columns(2) if individual_download else [st.container()]
         with download_cols[0]:
             st.download_button(
                 label="Download aggregated profile (.csv)",
