@@ -24,19 +24,19 @@ the definition of the diversity factor:
   preserved exactly - diversity only changes the timing of the load, not
   the total amount of energy required.
 
-### Calculating the GLF
+### Calculating the DF
 
-The GLF can either be set directly or calculated using the empirical
+The DF can either be set directly or calculated using the empirical
 approximation formula by Winter et al. (2001)[^1]:
 
 ```
-GLF = a + b / (1 + (n/c)^d)
+DF = a + b / (1 + (n/c)^d)
 ```
 
 where `n` is the number of buildings. Only `a` (the lower asymptotic
-bound of the GLF) is freely selectable; `c` and `d` are fixed at Winter's
+bound of the DF) is freely selectable; `c` and `d` are fixed at Winter's
 original values. `b` is deliberately set to `1 - a` (instead of Winter's
-fixed original value) so that `GLF(1) = 1` holds for any chosen `a` – with
+fixed original value) so that `DF(1) = 1` holds for any chosen `a` – with
 only one building, no reduction should occur.
 
 The formula is empirically validated only for `1 < n ≤ 200`; for larger
@@ -51,7 +51,7 @@ The formula is empirically validated only for `1 < n ≤ 200`; for larger
    headroom across the remaining time steps of the same segment (bounded
    by the two neighboring valleys).
 2. **Global correction**: If this local redistribution causes any time
-   step to exceed the global target peak (peak × GLF), it is capped, and
+   step to exceed the global target peak (peak × DF), it is capped, and
    the excess energy is redistributed proportionally across all time
    steps below the target peak.
 3. **Exact energy conservation**: Any remaining difference is distributed
@@ -60,7 +60,7 @@ The formula is empirically validated only for `1 < n ≤ 200`; for larger
 
 ### Assumptions and limitations
 
-- The GLF itself is not calculated from the time series; it remains a
+- The DF itself is not calculated from the time series; it remains a
   freely chosen input parameter (`a`). `c` and `d` are fixed, `b = 1 - a`.
 - Winter's formula is empirically validated only for `1 < n ≤ 200`; for
   larger `n`, the calculation extrapolates beyond the originally defined
