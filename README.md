@@ -1,6 +1,6 @@
 # DePeak
 
-DePeak applies diversityeffects to load profiles.
+DePeak applies diversity effects to load profiles.
 Two independent approaches are available:
 
 - **Winter approach (Scaling)** - scales the peak directly down to a
@@ -27,7 +27,7 @@ the definition of the diversity factor:
 ### Calculating the DF
 
 The DF can either be set directly or calculated using the empirical
-approximation formula by Winter et al. (2001)[^1]:
+approximation formula by Winter et al. (2001)[1]:
 
 ```
 DF = a + b / (1 + (n/c)^d)
@@ -46,7 +46,7 @@ The formula is empirically validated only for `1 < n ≤ 200`; for larger
 
 1. **Local peak shaving**: All local peaks and valleys are identified (a
    point counts as a peak/valley once it stands out by at least 2% of the
-   total value range). Each local peak is multiplied by the GLF; the
+   total value range). Each local peak is multiplied by the DF; the
    removed energy is redistributed proportionally to the available
    headroom across the remaining time steps of the same segment (bounded
    by the two neighboring valleys).
@@ -60,14 +60,13 @@ The formula is empirically validated only for `1 < n ≤ 200`; for larger
 
 ### Assumptions and limitations
 
-- The DF itself is not calculated from the time series; it remains a
-  freely chosen input parameter (`a`). `c` and `d` are fixed, `b = 1 - a`.
+- The DF is calculated from Winter's formula, in which case only a (the lower asymptotic bound) is freely chosen; 
+  `c` and `d` are fixed, `b = 1 - a`.
 - Winter's formula is empirically validated only for `1 < n ≤ 200`; for
   larger `n`, the calculation extrapolates beyond the originally defined
   range.
 - The two conditions above are oriented on the publicly documented
-  requirements of the commercial tool
-  [nPro](https://www.npro.energy/main/de/knowledge/heat-networks/diversity-factor);
+  requirements of the commercial tool nPro[2];
   the specific energy-redistribution algorithm is an independent
   implementation and not a reconstruction of nPro's internal, non-publicly
   documented procedure.
@@ -94,7 +93,7 @@ window(n) = window_max · (1 - e^(-n/τ))
 ```
 
 - `window_max` - maximum window width the user can set in the tool (default: 1 h)
-- `τ` - determines how quickly the window approaches its maximum; also user-adjustable in the tool (default: 80, which works good for `n ≤ 200`)
+- `τ` - determines how quickly the window approaches its maximum; also user-adjustable in the tool (default: 80, which works well for `n ≤ 200`)
 
 With few buildings, the window stays small; as `n` grows, it approaches
 `window_max` asymptotically, preventing unrealistically large shifts at
@@ -134,8 +133,12 @@ data (60, 15, or 1 minute):
   understood as a complementary, exploratory method rather than an
   independently validated alternative for determining a diversity factor.
 
----
+## References
 
-[^1]: W. Winter, T. Haslauer, I. Obernberger, "Untersuchungen der
-    Gleichzeitigkeit in kleinen und mittleren Nahwärmenetzen",
-    Euroheat & Power, 09&10/2001.
+[1] W. Winter, T. Haslauer, and I. Obernberger, 
+"Untersuchungen der Gleichzeitigkeit in kleinen und mittleren Nahwärmenetzen," 
+*Euroheat & Power*, no. 09–10, 2001.
+
+[2] nPro Energy. "Diversity Factor." Available at:
+https://www.npro.energy/main/de/knowledge/heat-networks/diversity-factor
+Accessed: September 2026.
