@@ -289,7 +289,10 @@ def _run_calculation(values):
                 n_buildings = values["n_buildings"]
                 adjusted = tool.apply(original, n=n_buildings)
                 diversity_factor = tool.get_diversity_factor(n_buildings)
-                info = {"Calculated diversity factor": f"{diversity_factor:.3f}"}
+                info = {
+                    "Calculated diversity factor": f"{diversity_factor:.3f}",
+                    "Peak reduction (%)": f"{100 * (1 - adjusted.max() / original.max()):.2f}",
+                }
                 return original, adjusted, info, None, None
             except Exception as exc:
                 return None, None, None, f"An error occurred while reading/calculating: {exc}", None
@@ -321,6 +324,7 @@ def _run_calculation(values):
                 info = {
                     "Number of buildings (n)": str(n_buildings),
                     "Calculated diversity factor": f"{diversity_factor:.3f}",
+                    "Peak reduction (%)": f"{100 * (1 - adjusted.max() / original.max()):.2f}",
                 }
                 return original, adjusted, info, None, None
             except Exception as exc:
