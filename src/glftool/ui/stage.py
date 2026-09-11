@@ -108,11 +108,15 @@ def _render_inputs():
     )
  
     if approach == "Scaling approach (Winter)":
+        st.caption("**Suitable for:** space heating or total heating demand profiles.")
         st.caption(
-            "The diversity factor is calculated according to [Winter’s approach](https://www.verenum.ch/Dokumente/2001_Winter-Gleichzeitig.pdf). - only the diversity-factor formula comes from that paper. "
+            "The diversity factor is calculated according to [Winter's approach](https://www.verenum.ch/Dokumente/2001_Winter-Gleichzeitig.pdf) - "
+            "only the formula comes from that paper. "
             "How the resulting peak reduction is then spread across nearby time steps is our own implementation, not part of Winter's original method."
         )
     else:
+        st.caption(
+            "**Suitable for:** any load profile type ")
         st.caption(
             "Each building profile is randomly shifted within a time window. "
             "The window grows with the number of buildings, up to the maximum "
