@@ -422,6 +422,22 @@ def render():
     st.title("DePeak")
     st.caption("Apply diversity effects to load profiles")
 
+    with st.expander("🚀 Quick Start"):
+        st.markdown(
+            """
+            1. **Choose an approach:**
+               - **Scaling** - shrinks the peak by a calculated factor, keeping the total energy the same.
+               - **Shift** - randomly shifts each building's profile in time, which lowers the peak naturally.
+            2. **Adjust settings** for your chosen approach.
+            3. **Upload your file(s)** - one combined file (don't forget to enter the
+               **number of buildings** it represents), or one file per building.
+            4. **Find your data:** you'll see a preview of your file. Just look at it and
+               tell the tool where your numbers are - which column, which row they start
+               in, and which sheet (if it's an Excel file with more than one).
+            5. Click **Calculate** to see the result and download it.
+            """
+        )
+
     left_col, right_col = st.columns([1, 1.3], gap="large")
 
     with left_col:
