@@ -10,7 +10,8 @@ Two independent approaches are available:
 
 ## Documentation
 
-A full write-up of the methodology, results, and limitations of both
+- **New to DePeak?** Start with the [step-by-step guide](./docs/DePeak_Anleitung.pdf) - plain language, with screenshots for every step.
+- A full write-up of the methodology, results, and limitations of both
 approaches is available as a PDF: [DePeak_Losieva_Polina.pdf](./docs/DePeak_Losieva_Polina.pdf).
 
 ## How to Run

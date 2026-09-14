@@ -438,6 +438,12 @@ def render():
             """
         )
 
+        st.markdown(
+            "Want more detail for every step? See the step-by-step guide in the "
+            '<a href="#documentation-section">Documentation</a> section below.',
+            unsafe_allow_html=True,
+        )
+
     left_col, right_col = st.columns([1, 1.3], gap="large")
 
     with left_col:
@@ -453,12 +459,21 @@ def render():
             _render_output(original, adjusted, info, error_message, individual_download)
 
     st.divider()
+    st.markdown('<div id="documentation-section"></div>', unsafe_allow_html=True)
     with st.expander("Documentation"):
-        doc_path = Path(__file__).resolve().parent.parent.parent.parent / "docs" / "DePeak_Losieva_Polina.pdf"
-        render_pdf_viewer(doc_path)
+        st.markdown("**Step-by-step guide**")
+        guide_path = Path(__file__).resolve().parent.parent.parent.parent / "docs" / "DePeak_Guide.pdf"
+        render_pdf_viewer(guide_path)
+
+        st.markdown("---")
+
+        st.markdown("**Full methodology**")
+        report_path = Path(__file__).resolve().parent.parent.parent.parent / "docs" / "DePeak_Losieva_Polina.pdf"
+        render_pdf_viewer(report_path)
+
         st.markdown(
             "Full source code available on "
-            "[GitHub](https://github.com/Losieva/DePeak)."
+            "[GitHub](https://github.com/твій-нікнейм/DePeak)."
         )
 
     with st.expander("Contact"):
