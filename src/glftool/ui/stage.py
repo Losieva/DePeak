@@ -131,7 +131,7 @@ def _render_inputs():
     if approach == "Scaling approach (Winter)":
         values["a_value"] = st.slider(
             "Lower limit of diversity factor",
-            min_value=0.0, max_value=1.0, value=0.45, step=0.01,
+            min_value=0.3, max_value=1.0, value=0.45, step=0.01,
         )
         st.caption(
             "Controls how strongly the load peaks are reduced. "
