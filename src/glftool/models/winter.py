@@ -129,6 +129,16 @@ class DiversityFactorTool:
         original_sum = vals.sum()
         target_peak = vals.max() * diversity_factor
 
+        mean_val = original_sum / num_hours
+        if target_peak < mean_val:
+            raise ValueError(
+                f"Infeasible diversity factor for this profile: the target "
+                f"peak ({target_peak:.4f}) is below the profile's average "
+                f"value ({mean_val:.4f}). Since the total energy must stay "
+                f"the same, the peak can never be reduced below the "
+                f"average - please choose a higher 'Lower limit of diversity factor' or smaller 'Number of buildings'."
+            )
+
         if prominence is None:
             data_range = vals.max() - vals.min()
             prominence = 0.02 * data_range
