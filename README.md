@@ -1,6 +1,6 @@
 # DePeak
 
-DePeak applies diversity effects to load profiles.
+DePeak applies diversity effects to heating load profiles.
 Two independent approaches are available:
 
 - **Winter approach (Scaling)** - scales the peak directly down to a
